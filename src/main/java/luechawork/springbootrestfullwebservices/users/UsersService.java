@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Component
-public class UsersDaoService {
+public class UsersService {
 
     //CRUD Users
     //JPA/Hibernate

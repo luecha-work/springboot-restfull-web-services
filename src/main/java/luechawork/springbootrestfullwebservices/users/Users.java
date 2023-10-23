@@ -1,5 +1,7 @@
 package luechawork.springbootrestfullwebservices.users;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,6 +15,10 @@ public class Users {
     }
 
     private Integer id;
+
+    @Size(min = 2 , message = "Name should have at lest 2 characters")
     private String name;
+
+    @Past(message = "Brith Date should be in the past")
     private LocalDate brithDate;
 }

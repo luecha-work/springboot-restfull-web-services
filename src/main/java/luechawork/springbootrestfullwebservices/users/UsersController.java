@@ -1,5 +1,6 @@
 package luechawork.springbootrestfullwebservices.users;
 
+import jakarta.validation.Valid;
 import luechawork.springbootrestfullwebservices.exception.UserNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,9 @@ import java.util.List;
 @RestController
 public class UsersController {
 
-    private final UsersDaoService userService;
+    private final UsersService userService;
 
-    public UsersController(UsersDaoService userService) {
+    public UsersController(UsersService userService) {
         this.userService = userService;
     }
 
@@ -39,7 +40,7 @@ public class UsersController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Users> createUser(@RequestBody Users user) {
+    public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
 
         Users createdUser = this.userService.createUser(user);
 
