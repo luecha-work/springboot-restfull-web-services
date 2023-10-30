@@ -16,35 +16,35 @@ public class VersioningPersonController {
     }
 
     @GetMapping("/v2/person")
-    public PersonV2 getSecoundVersionOfPerson() {
+    public PersonV2 getSecondVersionOfPerson() {
         return new PersonV2(new Name("Bod", "Charlie"));
     }
 
     //    Request Parameter versioning - Amazon
     @GetMapping(path = "/person", params = "version=1")
-    public PersonV1 getFirstVersionOfPersonRequestParamter() {
+    public PersonV1 getFirstVersionOfPersonRequestParameter() {
         return new PersonV1("Bob Charlie -> params");
     }
 
     @GetMapping(path = "/person", params = "version=2")
-    public PersonV2 getSecoundVersionOfPersonRequestParamter() {
+    public PersonV2 getSecondVersionOfPersonRequestParameter() {
         return new PersonV2(new Name("Bod", "Charlie -> params"));
     }
 
-    //    (Custom) hearders versioning - Microsoft
+    //    (Custom) headers versioning - Microsoft
     @GetMapping(path = "/person/header", headers = "X-API-VERSION=1")
-    public PersonV1 getFirstVersionOfPersonRequestHearder() {
+    public PersonV1 getFirstVersionOfPersonRequestHeader() {
         return new PersonV1("Bob Charlie - > header");
     }
 
     @GetMapping(path = "/person/header", headers = "X-API-VERSION=2")
-    public PersonV2 getSecoundVersionOfPersonRequestHearder() {
+    public PersonV2 getSecondVersionOfPersonRequestHeader() {
         return new PersonV2(new Name("Bod", "Charlie -> header"));
     }
 
     //    Media type versions (a.k.a "content negotiation" or "accept header") - GitHub
     @GetMapping(path = "/person/accept", produces = "application/vnd.company.app-v1+json")
-    public PersonV1 getFirstVersionOfPersonAcceptHearder() {
+    public PersonV1 getFirstVersionOfPersonAcceptHeader() {
         return new PersonV1("Bob Charlie -> accept");
     }
 
