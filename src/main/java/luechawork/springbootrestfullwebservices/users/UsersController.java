@@ -1,8 +1,11 @@
 package luechawork.springbootrestfullwebservices.users;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import jakarta.validation.Valid;
 import luechawork.springbootrestfullwebservices.exception.UserNotFoundException;
 import luechawork.springbootrestfullwebservices.users.model.MUsers;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,20 +27,26 @@ public class UsersController {
         return userService.findAll();
     }
 
+    //    EntityModel
+    //    WebMvcLinkBuilder
     @GetMapping("/users/{id}")
-    public MUsers retrieveUser(@PathVariable int id) {
+    public EntityModel<MUsers> retrieveUser(@PathVariable int id) {
         MUsers user = userService.findOne(id);
 
         if (user == null) {
             throw new UserNotFoundException("id:" + id);
         }
+        EntityModel<MUsers> entityModel = EntityModel.of(user);
 
-        return user;
+        WebMvcLinkBuilder  link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+        entityModel.add(link.withRel("all-users"));
+
+        return entityModel;
     }
 
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id) {
-         this.userService.deleteUser(id);
+        this.userService.deleteUser(id);
     }
 
     @PostMapping("/users")

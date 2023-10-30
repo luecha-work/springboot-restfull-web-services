@@ -12,9 +12,10 @@ import java.util.Locale;
 @RestController()
 public class HelloController {
 
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
 
     public HelloController(MessageSource messageSource) {
+        super();
         this.messageSource = messageSource;
     }
 
@@ -37,7 +38,7 @@ public class HelloController {
     }
 
     @GetMapping(path = "/hello-world-internationlized")
-    public String helloWorldInternationlized() {
+    public String helloWorldInternationalized() {
         Locale locale = LocaleContextHolder.getLocale();
 
         return this.messageSource.getMessage("good.morning.message", null, "Default Message", locale);
