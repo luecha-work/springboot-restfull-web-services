@@ -2,6 +2,7 @@ package luechawork.springbootrestfullwebservices.users;
 
 import jakarta.validation.Valid;
 import luechawork.springbootrestfullwebservices.exception.UserNotFoundException;
+import luechawork.springbootrestfullwebservices.users.model.MUsers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,13 +20,13 @@ public class UsersController {
     }
 
     @GetMapping("/users")
-    public List<Users> retrieveAllUsers() {
+    public List<MUsers> retrieveAllUsers() {
         return userService.findAll();
     }
 
     @GetMapping("/users/{id}")
-    public Users retrieveUser(@PathVariable int id) {
-        Users user = userService.findOne(id);
+    public MUsers retrieveUser(@PathVariable int id) {
+        MUsers user = userService.findOne(id);
 
         if (user == null) {
             throw new UserNotFoundException("id:" + id);
@@ -40,9 +41,9 @@ public class UsersController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
+    public ResponseEntity<MUsers> createUser(@Valid @RequestBody MUsers user) {
 
-        Users createdUser = this.userService.createUser(user);
+        MUsers createdUser = this.userService.createUser(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

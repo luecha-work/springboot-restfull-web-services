@@ -1,4 +1,4 @@
-package luechawork.springbootrestfullwebservices.users;
+package luechawork.springbootrestfullwebservices.users.model;
 
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -7,8 +7,8 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class Users {
-    public Users(Integer id, String name, LocalDate brithDate) {
+public class MUsers {
+    public MUsers(Integer id, String name, LocalDate brithDate) {
         setId(id);
         setName(name);
         setBrithDate(brithDate);
