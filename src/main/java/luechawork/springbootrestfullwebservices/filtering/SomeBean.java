@@ -1,14 +1,15 @@
 package luechawork.springbootrestfullwebservices.filtering;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Data;
 
 @Data
-@JsonIgnoreProperties({"field1", "field2"})
+//@JsonIgnoreProperties({"field1", "field2"})
+@JsonFilter("SomeBeanFilter")
 public class SomeBean {
     private String field1;
 
-    //    @JsonIgnore  //Not return
+    //    @JsonIgnore  //This column not return
     private String field2;
     private String field3;
 
