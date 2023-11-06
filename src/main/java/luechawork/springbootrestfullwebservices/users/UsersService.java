@@ -1,6 +1,6 @@
 package luechawork.springbootrestfullwebservices.users;
 
-import luechawork.springbootrestfullwebservices.users.model.MUsers;
+import luechawork.springbootrestfullwebservices.model.MUsers;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

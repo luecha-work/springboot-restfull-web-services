@@ -3,6 +3,7 @@ package luechawork.springbootrestfullwebservices.filtering;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import luechawork.springbootrestfullwebservices.model.MSomeBean;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ public class FilteringController {
 
     @GetMapping("/filtering")
     public MappingJacksonValue filtering() {
-        SomeBean someBean = new SomeBean("value1", "value2", "value3");
+        MSomeBean someBean = new MSomeBean("value1", "value2", "value3");
 
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBean);
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field3");
@@ -27,9 +28,9 @@ public class FilteringController {
 
     @GetMapping("/filtering-list")
     public MappingJacksonValue filteringList() {
-        List<SomeBean> list = Arrays.asList(
-                new SomeBean("value1", "value2", "value3"),
-                new SomeBean("value4", "value5", "value6"));
+        List<MSomeBean> list = Arrays.asList(
+                new MSomeBean("value1", "value2", "value3"),
+                new MSomeBean("value4", "value5", "value6"));
 
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(list);
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field3");

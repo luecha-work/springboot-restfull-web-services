@@ -3,7 +3,7 @@ package luechawork.springbootrestfullwebservices.users;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import jakarta.validation.Valid;
 import luechawork.springbootrestfullwebservices.exception.UserNotFoundException;
-import luechawork.springbootrestfullwebservices.users.model.MUsers;
+import luechawork.springbootrestfullwebservices.model.MUsers;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
