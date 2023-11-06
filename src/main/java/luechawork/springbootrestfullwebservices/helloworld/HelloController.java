@@ -37,7 +37,7 @@ public class HelloController {
         return new MHelloWorldBean(String.format("Hello World, %s", name));
     }
 
-    @GetMapping(path = "/hello-world-internationlized")
+    @GetMapping(path = "/hello-world-internationalized")
     public String helloWorldInternationalized() {
         Locale locale = LocaleContextHolder.getLocale();
 
