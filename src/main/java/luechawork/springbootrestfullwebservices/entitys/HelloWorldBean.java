@@ -1,9 +1,9 @@
-package luechawork.springbootrestfullwebservices.model;
+package luechawork.springbootrestfullwebservices.entitys;
 
 import lombok.Data;
 
 @Data
-public class MHelloWorldBean {
+public class HelloWorldBean {
 
     private String massage;
 
@@ -14,7 +14,7 @@ public class MHelloWorldBean {
                 '}';
     }
 
-    public MHelloWorldBean(String message){
+    public HelloWorldBean(String message){
         setMassage(message);
     }
 }

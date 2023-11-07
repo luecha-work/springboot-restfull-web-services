@@ -1,9 +1,10 @@
-package luechawork.springbootrestfullwebservices.users;
+package luechawork.springbootrestfullwebservices.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import jakarta.validation.Valid;
 import luechawork.springbootrestfullwebservices.exception.UserNotFoundException;
-import luechawork.springbootrestfullwebservices.model.MUsers;
+import luechawork.springbootrestfullwebservices.entitys.Users;
+import luechawork.springbootrestfullwebservices.service.UsersService;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -23,20 +24,20 @@ public class UsersController {
     }
 
     @GetMapping("/users")
-    public List<MUsers> retrieveAllUsers() {
+    public List<Users> retrieveAllUsers() {
         return userService.findAll();
     }
 
     //    EntityModel
     //    WebMvcLinkBuilder
     @GetMapping("/users/{id}")
-    public EntityModel<MUsers> retrieveUser(@PathVariable int id) {
-        MUsers user = userService.findOne(id);
+    public EntityModel<Users> retrieveUser(@PathVariable int id) {
+        Users user = userService.findOne(id);
 
         if (user == null) {
             throw new UserNotFoundException("id:" + id);
         }
-        EntityModel<MUsers> entityModel = EntityModel.of(user);
+        EntityModel<Users> entityModel = EntityModel.of(user);
 
         WebMvcLinkBuilder  link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         entityModel.add(link.withRel("all-users"));
@@ -50,9 +51,9 @@ public class UsersController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<MUsers> createUser(@Valid @RequestBody MUsers user) {
+    public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
 
-        MUsers createdUser = this.userService.createUser(user);
+        Users createdUser = this.userService.createUser(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

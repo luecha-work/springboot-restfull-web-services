@@ -1,4 +1,4 @@
-package luechawork.springbootrestfullwebservices.model;
+package luechawork.springbootrestfullwebservices.entitys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @Entity(name = "user_details")
-public class MUsers {
+public class Users {
 
     @Id
     @GeneratedValue
@@ -29,12 +29,12 @@ public class MUsers {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<MPost> posts;
+    private List<Post> posts;
 
-    protected MUsers() {
+    protected Users() {
     }
 
-    public MUsers(Integer id, String name, LocalDate brithDate) {
+    public Users(Integer id, String name, LocalDate brithDate) {
         setId(id);
         setName(name);
         setBrithDate(brithDate);

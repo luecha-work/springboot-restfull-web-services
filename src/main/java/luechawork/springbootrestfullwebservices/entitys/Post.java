@@ -1,4 +1,4 @@
-package luechawork.springbootrestfullwebservices.model;
+package luechawork.springbootrestfullwebservices.entitys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity(name = "post")
-public class MPost {
+public class Post {
 
     @Id
     @GeneratedValue()
@@ -18,5 +18,5 @@ public class MPost {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private MUsers user;
+    private Users user;
 }

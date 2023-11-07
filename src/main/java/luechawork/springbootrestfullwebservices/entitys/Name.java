@@ -1,4 +1,4 @@
-package luechawork.springbootrestfullwebservices.versioning.model;
+package luechawork.springbootrestfullwebservices.entitys;
 
 import lombok.Data;
 

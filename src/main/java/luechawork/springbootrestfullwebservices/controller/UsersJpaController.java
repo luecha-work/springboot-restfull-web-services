@@ -1,11 +1,12 @@
-package luechawork.springbootrestfullwebservices.users;
+package luechawork.springbootrestfullwebservices.controller;
 
 import jakarta.validation.Valid;
 import luechawork.springbootrestfullwebservices.exception.UserNotFoundException;
-import luechawork.springbootrestfullwebservices.jpa.PostRepository;
-import luechawork.springbootrestfullwebservices.jpa.UserRepository;
-import luechawork.springbootrestfullwebservices.model.MPost;
-import luechawork.springbootrestfullwebservices.model.MUsers;
+import luechawork.springbootrestfullwebservices.repository.PostRepository;
+import luechawork.springbootrestfullwebservices.repository.UserRepository;
+import luechawork.springbootrestfullwebservices.entitys.Post;
+import luechawork.springbootrestfullwebservices.entitys.Users;
+import luechawork.springbootrestfullwebservices.service.UsersService;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -35,20 +36,20 @@ public class UsersJpaController {
     }
 
     @GetMapping("/jpa/users")
-    public List<MUsers> retrieveAllUsers() {
+    public List<Users> retrieveAllUsers() {
         return userRepository.findAll();
     }
 
     //    EntityModel
     //    WebMvcLinkBuilder
     @GetMapping("/jpa/users/{id}")
-    public EntityModel<MUsers> retrieveUser(@PathVariable int id) {
-        Optional<MUsers> user = userRepository.findById(id);
+    public EntityModel<Users> retrieveUser(@PathVariable int id) {
+        Optional<Users> user = userRepository.findById(id);
 
         if (user.isEmpty()) {
             throw new UserNotFoundException("id:" + id);
         }
-        EntityModel<MUsers> entityModel = EntityModel.of(user.get());
+        EntityModel<Users> entityModel = EntityModel.of(user.get());
 
         WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         entityModel.add(link.withRel("all-users"));
@@ -62,8 +63,8 @@ public class UsersJpaController {
     }
 
     @GetMapping("/jpa/users/{id}/posts")
-    public List<MPost> retrievePostsForUser(@PathVariable int id) {
-        Optional<MUsers> user = userRepository.findById(id);
+    public List<Post> retrievePostsForUser(@PathVariable int id) {
+        Optional<Users> user = userRepository.findById(id);
 
         if (user.isEmpty()) {
             throw new UserNotFoundException("id:" + id);
@@ -74,9 +75,9 @@ public class UsersJpaController {
     }
 
     @PostMapping("/jpa/users")
-    public ResponseEntity<MUsers> createUser(@Valid @RequestBody MUsers user) {
+    public ResponseEntity<Users> createUser(@Valid @RequestBody Users user) {
 
-        MUsers createdUser = this.userRepository.save(user);
+        Users createdUser = this.userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -88,15 +89,15 @@ public class UsersJpaController {
     }
 
     @PostMapping("/jpa/users/{id}/posts")
-    public ResponseEntity<Objects> createPostsForUser(@PathVariable int id, @Valid @RequestBody MPost post) {
-        Optional<MUsers> user = userRepository.findById(id);
+    public ResponseEntity<Objects> createPostsForUser(@PathVariable int id, @Valid @RequestBody Post post) {
+        Optional<Users> user = userRepository.findById(id);
 
         if (user.isEmpty()) {
             throw new UserNotFoundException("id:" + id);
         }
 
         post.setUser(user.get());
-        MPost savedPost = postRepository.save(post);
+        Post savedPost = postRepository.save(post);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
