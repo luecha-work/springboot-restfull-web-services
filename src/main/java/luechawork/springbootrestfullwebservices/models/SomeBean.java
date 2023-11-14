@@ -1,4 +1,4 @@
-package luechawork.springbootrestfullwebservices.entitys;
+package luechawork.springbootrestfullwebservices.models;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Data;

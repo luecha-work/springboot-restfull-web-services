@@ -1,7 +1,7 @@
-package luechawork.springbootrestfullwebservices.entitys;
+package luechawork.springbootrestfullwebservices.models;
 
 import lombok.Data;
-import luechawork.springbootrestfullwebservices.entitys.Name;
+import luechawork.springbootrestfullwebservices.models.Name;
 
 @Data
 public class PersonV2 {

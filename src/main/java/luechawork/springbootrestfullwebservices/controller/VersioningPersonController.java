@@ -1,8 +1,8 @@
 package luechawork.springbootrestfullwebservices.controller;
 
-import luechawork.springbootrestfullwebservices.entitys.Name;
-import luechawork.springbootrestfullwebservices.entitys.PersonV1;
-import luechawork.springbootrestfullwebservices.entitys.PersonV2;
+import luechawork.springbootrestfullwebservices.models.Name;
+import luechawork.springbootrestfullwebservices.models.PersonV1;
+import luechawork.springbootrestfullwebservices.models.PersonV2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

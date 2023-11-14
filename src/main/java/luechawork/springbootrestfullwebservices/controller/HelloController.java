@@ -1,6 +1,6 @@
 package luechawork.springbootrestfullwebservices.controller;
 
-import luechawork.springbootrestfullwebservices.entitys.HelloWorldBean;
+import luechawork.springbootrestfullwebservices.models.HelloWorldBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
